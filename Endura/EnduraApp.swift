@@ -11,7 +11,9 @@ import SwiftUI
 struct EnduraApp: App {
     var body: some Scene {
         WindowGroup {
-            ExercisesView()
+            NavigationStack {
+                ExercisesView()
+            }
         }
     }
 }

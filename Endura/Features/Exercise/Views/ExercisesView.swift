@@ -12,23 +12,20 @@ struct ExercisesView: View {
     var viewModel = ExercisesViewModel()
     
     var body: some View {
-        NavigationStack {
-            VStack {
-                switch viewModel.state {
-                case .idle, .loading:
-                    ProgressView()
-                    
-                case .error(let errorMessage):
-                    Text(errorMessage)
-                    
-                case .success:
-                    ExercisesListView(exercises: viewModel.filteredExercises)
-                }
+        VStack {
+            switch viewModel.state {
+            case .idle, .loading:
+                ProgressView()
+                
+            case .error(let errorMessage):
+                Text(errorMessage)
+                
+            case .success:
+                ExercisesListView(exercises: viewModel.filteredExercises)
             }
-            .task { await viewModel.loadExercises() }
-            .navigationTitle("Exercises")
-            .searchable(text: $viewModel.search)
         }
+        .navigationTitle("Exercises")
+        .searchable(text: $viewModel.search)
     }
 }
 

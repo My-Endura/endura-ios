@@ -28,6 +28,12 @@ class ExercisesViewModel: ObservableObject {
         return []
     }
     
+    init() {
+        Task {
+            await loadExercises()
+        }
+    }
+    
     func loadExercises() async {
         state = .loading
         
